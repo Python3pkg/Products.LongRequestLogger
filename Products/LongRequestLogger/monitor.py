@@ -7,7 +7,7 @@
 import os, threading
 from collections import deque
 from select import select
-from thread import get_ident
+from _thread import get_ident
 from time import time
 from .dumper import Dumper
 

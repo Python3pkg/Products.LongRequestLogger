@@ -4,9 +4,9 @@
 #
 ##############################################################################
 
-from cStringIO import StringIO
+from io import StringIO
 from pprint import pformat
-from thread import get_ident
+from _thread import get_ident
 from App.config import getConfiguration
 import Signals.Signals
 import ZConfig.components.logger.loghandler
@@ -102,7 +102,7 @@ class Dumper(object):
         # And we import it locally to get even monkey-patched versions of the
         # function.
         from ZPublisher.Publish import call_object
-        func_code = call_object.func_code #@UndefinedVariable
+        func_code = call_object.__code__ #@UndefinedVariable
         while frame is not None:
             if frame.f_code is func_code:
                 return frame.f_locals.get('request')
@@ -115,7 +115,7 @@ class Dumper(object):
         def extract_sql(self, frame):
             pass
     else:
-        def extract_sql(self, frame, func_code=DB._query.func_code):
+        def extract_sql(self, frame, func_code=DB._query.__code__):
             while frame is not None:
                 if frame.f_code is func_code:
                     return frame.f_locals['query']

@@ -6,7 +6,7 @@
 
 import sys
 import unittest
-from cStringIO import StringIO
+from io import StringIO
 from doctest import OutputChecker
 from doctest import REPORT_UDIFF, NORMALIZE_WHITESPACE, ELLIPSIS
 import os
